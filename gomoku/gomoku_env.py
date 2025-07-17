@@ -5,7 +5,6 @@ from gym import spaces
 import pygame
 from pygame.locals import *
 
-
 class GomokuEnv(gym.Env):
     metadata = {"render.modes": ["human"]}
 
