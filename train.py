@@ -36,6 +36,7 @@ class GomokuFlow(TrainFlow):
 
     def update_dataset(self, D: DataSet):
         D.clear()
+        self.policy_net.train(mode=False)
         futures = [
             self.executor.submit(self_play, self.policy_net, GomokuEnv())
             for _ in range(10)
@@ -49,9 +50,12 @@ class GomokuFlow(TrainFlow):
         self.print_trajectory(traj)
 
     def train_step(self, D: DataSet):
+        self.policy_net.train()
         simplest_policy_gradient(D, self.policy_net, self.optimizer)
 
     def eval_step(self):
+        self.policy_net.train(mode=False)
+        self.baseline_policy_net.train(mode=False)
         ent1, _, win_rate = play_multimes(self.policy_net, self.baseline_policy_net, 10)
         logging.info(f"Entropy {ent1:.4f}, Win(rate) {win_rate:.4f}")
 
