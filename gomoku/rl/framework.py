@@ -57,7 +57,7 @@ class TrainFlow(ABC):
 
             if (eval_interval != 0) and ((k + 1) % eval_interval == 0):
                 logging.debug(f"k={k}, evaling ...")
-                self.eval_step(D)
+                self.eval_step()
 
             if (save_interval != 0) and ((k + 1) % save_interval == 0):
                 logging.debug(f"k={k}, saving model ...")

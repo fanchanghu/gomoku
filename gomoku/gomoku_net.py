@@ -43,6 +43,7 @@ class GomokuNet(nn.Module):
             )
 
     def forward(self, x):
+        x = x.to(next(self.parameters()).device)
         x = self.stem(x)
         x = self.body(x)
         return self.head(x)

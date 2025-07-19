@@ -7,6 +7,7 @@ from gomoku import GomokuEnv, GomokuNet
 from gomoku.gomoku_play import *
 import logging
 
+device = "cuda" if torch.cuda.is_available() else "cpu"
 
 def print_model(name: str, model: torch.nn.Module):
     total_params = sum(p.numel() for p in model.parameters())
@@ -18,7 +19,7 @@ class GomokuFlow(TrainFlow):
         self.executor.shutdown()
 
     def __init__(self):
-        self.policy_net = GomokuNet()
+        self.policy_net = GomokuNet().to(device)
         self.env = GomokuEnv()
         self.optimizer = torch.optim.Adam(self.policy_net.parameters(), lr=3e-4)
         self.baseline_policy_net = copy.deepcopy(self.policy_net)
@@ -66,5 +67,6 @@ if __name__ == "__main__":
         format="%(asctime)s - %(levelname)s - %(message)s",
         datefmt="%Y-%m-%d %H:%M:%S",
     )
+    logging.info(f"use device: {device}")
     train_flow = GomokuFlow()
     train_flow.run(max_k=1000, eval_interval=10, save_interval=100)

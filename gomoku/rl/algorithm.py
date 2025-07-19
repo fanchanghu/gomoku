@@ -22,6 +22,9 @@ def simplest_policy_gradient(
             state = torch.as_tensor(sar.state).unsqueeze(0).unsqueeze(0)
             action = torch.as_tensor([sar.action]).unsqueeze(0)
 
+            state = state.to(next(policy.parameters()).device)
+            action = action.to(next(policy.parameters()).device)
+
             logits = policy(state)
             log_prob_sum += F.log_softmax(logits, dim=-1).gather(1, action).squeeze()
 
