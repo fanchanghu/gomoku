@@ -1,8 +1,10 @@
 # main.py
 import sys
 import pygame
+import torch
 from gomoku import GomokuEnv
 from gomoku.actors import *
+from gomoku.gomoku_net import GomokuNet
 
 def has_quit_event(events):
     for event in events:
@@ -24,6 +26,12 @@ def get_machine_actor():
     if len(sys.argv) == 1:
         print("No machine actor selected. Defaulting to Random.")
         return RandomActor()
+    elif sys.argv[1] == "random":
+        print("Using Random Actor.")
+        return RandomActor()
+    elif sys.argv[1] == "ai":
+        print("Using AI Actor.")
+        return AIActor()
 
 def run_game():
     env = GomokuEnv(board_size=15)
