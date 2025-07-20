@@ -43,6 +43,9 @@ class GomokuNet(nn.Module):
             )
 
     def forward(self, x):
+        # x: [N, H, W] -> [N, 1, H, W]
+        if x.dim() == 3:
+            x = x.unsqueeze(1)
         x = x.to(next(self.parameters()).device)
         x = self.stem(x)
         x = self.body(x)

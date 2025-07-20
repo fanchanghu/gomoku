@@ -57,7 +57,7 @@ class GomokuFlow(TrainFlow):
     def eval_step(self):
         self.policy_net.train(mode=False)
         self.baseline_policy_net.train(mode=False)
-        ent1, _, win_rate = play_multimes(self.policy_net, self.baseline_policy_net, 10)
+        ent1, _, win_rate = play_multimes(self.policy_net, self.baseline_policy_net, self.env, 10)
         logging.info(f"Entropy {ent1:.4f}, Win(rate) {win_rate:.4f}")
 
 

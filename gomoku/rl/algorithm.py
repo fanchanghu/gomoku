@@ -10,25 +10,30 @@ def simplest_policy_gradient(
 ) -> None:
     optimizer.zero_grad()
 
-    traj_size = len(trajectories)
-
+    states = []
+    actions = []
+    returns = []
     for traj in trajectories:
-        # 整条轨迹的回报
         R = sum(sar.reward for sar in traj)
-
-        log_prob_sum = 0.0
-
         for sar in traj:
-            state = torch.as_tensor(sar.state).unsqueeze(0).unsqueeze(0)
-            action = torch.as_tensor([sar.action]).unsqueeze(0)
+            states.append(torch.as_tensor(sar.state))
+            actions.append(sar.action)
+            returns.append(R)
 
-            state = state.to(next(policy.parameters()).device)
-            action = action.to(next(policy.parameters()).device)
+    states = torch.stack(states)  # [N, H, W]
+    actions = torch.tensor(actions, dtype=torch.long)  # [N]
+    returns = torch.tensor(returns, dtype=torch.float32)  # [N]
 
-            logits = policy(state)
-            log_prob_sum += F.log_softmax(logits, dim=-1).gather(1, action).squeeze()
+    device = next(policy.parameters()).device
+    states = states.to(device)
+    actions = actions.to(device)
+    returns = returns.to(device)
 
-        # 一次性反向传播
-        (-log_prob_sum * R / traj_size).backward()  # 负号把最大化变成最小化
+    logits = policy(states)  # [N, num_actions]
+    log_probs = F.log_softmax(logits, dim=-1)
+    log_probs_act = log_probs.gather(-1, actions.unsqueeze(-1)).squeeze(-1)  # [N]
 
+    batch_size = len(trajectories)
+    loss = -(log_probs_act * returns).sum() / batch_size
+    loss.backward()
     optimizer.step()
