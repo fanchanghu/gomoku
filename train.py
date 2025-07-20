@@ -1,3 +1,4 @@
+from typing import Literal
 import torch
 import copy
 from concurrent.futures import ThreadPoolExecutor
@@ -10,6 +11,29 @@ import logging
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
 
+def find_latest_model():
+    import os
+    import re
+
+    model_dir = "./model"
+    pattern = re.compile(r"policy_net_(\d+)\.pth")
+    latest_k = -1
+    latest_file = None
+
+    for filename in os.listdir(model_dir):
+        match = pattern.match(filename)
+        if match:
+            k = int(match.group(1))
+            if k > latest_k:
+                latest_k = k
+                latest_file = filename
+
+    if latest_file is not None:
+        return os.path.join(model_dir, latest_file), latest_k
+    else:
+        return None, 0
+
+
 def print_model(name: str, model: torch.nn.Module):
     total_params = sum(p.numel() for p in model.parameters())
     logging.info(f"{name}, parameters: {total_params} \n{model}")
@@ -19,7 +43,29 @@ class GomokuFlow(TrainFlow):
     def __del__(self):
         self.executor.shutdown()
 
-    def __init__(self):
+    def __init__(self, mode: Literal["init", "continue"]):
+
+        if mode == "continue":
+            model_path, k = find_latest_model()
+            if model_path is None:
+                logging.error("No model found for continuation. Exiting.")
+                raise FileNotFoundError("No model found for continuation.")
+            logging.info(f"Continuing from model: {model_path}, k={k}")
+            self.init_k = k
+            self.policy_net = GomokuNet().to(device)
+            self.policy_net.load_state_dict(torch.load(model_path, map_location=device))
+        elif mode == "init":
+            logging.info("Initializing training from scratch.")
+            # clear model/*.pth
+            import os
+            import glob
+            for file in glob.glob("model/*.pth"):
+                os.remove(file)
+            logging.info("Cleared old models.")
+            
+            self.init_k = 0
+            self.policy_net = GomokuNet().to(device)
+
         self.policy_net = GomokuNet().to(device)
         self.env = GomokuEnv()
         self.optimizer = torch.optim.Adam(self.policy_net.parameters(), lr=3e-4)
@@ -64,10 +110,39 @@ class GomokuFlow(TrainFlow):
         logging.info(f"Entropy {ent1:.4f}, Win(rate) {win_rate:.4f}")
 
     def save_model(self, k: int):
+        # only keep the latest 10 models
+        import os
+        import re
+        import glob
+        for file in glob.glob("model/policy_net_*.pth"):
+            k_match = re.search(r"policy_net_(\d+)\.pth", file)
+            if k_match and int(k_match.group(1)) < k - 9:
+                os.remove(file)
+                logging.info(f"Removed old model: {file}")
+
         torch.save(self.policy_net.state_dict(), f"model/policy_net_{k+1}.pth")
         logging.info(f"Model saved to policy_net_{k+1}.pth")
 
         self.baseline_policy_net = copy.deepcopy(self.policy_net)
+
+
+def parse_args():
+    import sys
+
+    if len(sys.argv) == 1:
+        print("No argument provided, defaulting to continue training.")
+        return "continue"
+
+    if sys.argv[1] == "init":
+        print("train from scratch, no model loaded.")
+        return "init"
+    elif sys.argv[1] == "continue":
+        print("continue training from the latest model.")
+        return "continue"
+    else:
+        # exit
+        print(f"Unknown argument: {sys.argv[1]}. Use 'init' or 'continue'.")
+        sys.exit(1)
 
 
 if __name__ == "__main__":
@@ -77,5 +152,8 @@ if __name__ == "__main__":
         datefmt="%Y-%m-%d %H:%M:%S",
     )
     logging.info(f"use device: {device}")
-    train_flow = GomokuFlow()
-    train_flow.run(max_k=1000, eval_interval=10, save_interval=100)
+
+    mode = parse_args()
+
+    train_flow = GomokuFlow(mode)
+    train_flow.run(max_k=10000, eval_interval=10, save_interval=100)

@@ -16,7 +16,7 @@ DataSet: TypeAlias = list[Trajectory]
 
 
 class TrainFlow(ABC):
-
+    init_k: int = 0
     k: int = 0
 
     def create_dataset(self) -> DataSet:
@@ -36,17 +36,11 @@ class TrainFlow(ABC):
     def save_model(self, k: int):
         pass
 
-    def run(
-        self,
-        *,
-        max_k: int,
-        eval_interval: int,
-        save_interval: int
-    ):
+    def run(self, *, max_k: int, eval_interval: int, save_interval: int):
         logging.info("start training ...")
         D = self.create_dataset()
 
-        for k in range(max_k):
+        for k in range(self.init_k, max_k):
             self.k = k
 
             logging.debug(f"k={k}, update dataset ...")
