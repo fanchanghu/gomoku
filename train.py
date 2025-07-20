@@ -67,6 +67,8 @@ class GomokuFlow(TrainFlow):
         torch.save(self.policy_net.state_dict(), f"model/policy_net_{k+1}.pth")
         logging.info(f"Model saved to policy_net_{k+1}.pth")
 
+        self.baseline_policy_net = copy.deepcopy(self.policy_net)
+
 
 if __name__ == "__main__":
     logging.basicConfig(
