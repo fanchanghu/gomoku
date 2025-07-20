@@ -66,7 +66,6 @@ class GomokuFlow(TrainFlow):
             self.init_k = 0
             self.policy_net = GomokuNet().to(device)
 
-        self.policy_net = GomokuNet().to(device)
         self.env = GomokuEnv()
         self.optimizer = torch.optim.Adam(self.policy_net.parameters(), lr=3e-4)
         self.baseline_policy_net = copy.deepcopy(self.policy_net)
