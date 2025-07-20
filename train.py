@@ -115,7 +115,7 @@ class GomokuFlow(TrainFlow):
         import glob
         for file in glob.glob("model/policy_net_*.pth"):
             k_match = re.search(r"policy_net_(\d+)\.pth", file)
-            if k_match and int(k_match.group(1)) < k - 9:
+            if k_match and int(k_match.group(1)) < k - 900:
                 os.remove(file)
                 logging.info(f"Removed old model: {file}")
 
