@@ -7,7 +7,30 @@ from gomoku import GomokuNet
 class AIActor:
     def __init__(self):
         self.policy_net = GomokuNet()
-        self.policy_net.load_state_dict(torch.load("model/policy_net_1000.pth"))
+
+        # load latest(max k) model from model/policy_net_{k}.pth
+        import os
+        import re
+
+        model_dir = "./model"
+        pattern = re.compile(r"policy_net_(\d+)\.pth")
+        latest_k = -1
+        latest_file = None
+        for filename in os.listdir(model_dir):
+            match = pattern.match(filename)
+            if match:
+                k = int(match.group(1))
+                if k > latest_k:
+                    latest_k = k
+                    latest_file = filename
+
+        if latest_file is not None:
+            model_path = os.path.join(model_dir, latest_file)
+            self.policy_net.load_state_dict(torch.load(model_path, map_location="cpu"))
+            print(f"Loaded model from {model_path}, k={latest_k}")
+        else:
+            # throw error
+            raise FileNotFoundError("No model found in the model directory.")
 
     def __call__(self, env: GomokuEnv):
         empty_positions = np.argwhere(env.board == 0)
