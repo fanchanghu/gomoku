@@ -33,7 +33,7 @@ class TrainFlow(ABC):
     def eval_step(self):
         pass
 
-    def save_model(self):
+    def save_model(self, k: int):
         pass
 
     def run(
@@ -61,4 +61,4 @@ class TrainFlow(ABC):
 
             if (save_interval != 0) and ((k + 1) % save_interval == 0):
                 logging.debug(f"k={k}, saving model ...")
-                self.save_model()
+                self.save_model(k)

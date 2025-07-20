@@ -115,9 +115,13 @@ def play(
             log_probs = F.log_softmax(logits, dim=-1)
             probs = log_probs.exp()
 
+            # 只在合法动作上计算熵，排除 -inf 项
+            valid_log_probs = log_probs[valid]
+            valid_probs = probs[valid]
+            entropy = -(valid_probs * valid_log_probs).sum().item()
+
             # 选动作（贪心或采样均可；这里用贪心保证确定性）
             action = int(torch.argmax(log_probs).item())
-            entropy = -(probs * log_probs).sum().item()
 
         entropy_sum[cur_p] += entropy
         step_cnt[cur_p] += 1
@@ -162,6 +166,8 @@ def play_multimes(
         else:
             ent2, ent1, winner = play(policy_net2, policy_net, env)
             net_win = 1 if winner == 2 else 0  # policy_net 后手赢
+
+        print(f"Game {game + 1}/{2 * times}, ent1: {ent1:.4f}, ent2: {ent2:.4f}, win: {net_win}")
 
         ent1_list.append(ent1)
         ent2_list.append(ent2)

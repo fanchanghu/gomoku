@@ -9,6 +9,7 @@ import logging
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
+
 def print_model(name: str, model: torch.nn.Module):
     total_params = sum(p.numel() for p in model.parameters())
     logging.info(f"{name}, parameters: {total_params} \n{model}")
@@ -57,8 +58,14 @@ class GomokuFlow(TrainFlow):
     def eval_step(self):
         self.policy_net.train(mode=False)
         self.baseline_policy_net.train(mode=False)
-        ent1, _, win_rate = play_multimes(self.policy_net, self.baseline_policy_net, self.env, 10)
+        ent1, _, win_rate = play_multimes(
+            self.policy_net, self.baseline_policy_net, self.env, 5
+        )
         logging.info(f"Entropy {ent1:.4f}, Win(rate) {win_rate:.4f}")
+
+    def save_model(self, k: int):
+        torch.save(self.policy_net.state_dict(), f"model/policy_net_{k+1}.pth")
+        logging.info(f"Model saved to policy_net_{k+1}.pth")
 
 
 if __name__ == "__main__":
