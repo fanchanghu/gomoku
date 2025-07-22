@@ -25,6 +25,7 @@ class GomokuEnv(gym.Env):
         self.screen = None
         self.clock = None
         self.font = None
+        self.top_move_probs = None  # 新增属性
 
     def reset(self):
         self.board = np.zeros(
@@ -112,6 +113,22 @@ class GomokuEnv(gym.Env):
                     pygame.draw.circle(
                         self.screen, (255, 255, 255), (j * 30 + 15, i * 30 + 15), 10
                     )  # 白棋
+
+        # 绘制概率标注
+        if self.top_move_probs is not None:
+            board_size = self.board_size
+            flat_probs = self.top_move_probs.flatten()
+            top_n = min(10, np.count_nonzero(flat_probs))
+            top_indices = np.argpartition(-flat_probs, top_n)[:top_n]
+            top_indices = top_indices[np.argsort(-flat_probs[top_indices])]
+            for idx in top_indices:
+                row, col = divmod(idx, board_size)
+                prob = flat_probs[idx]
+                x, y = col * 30 + 15, row * 30 + 15
+                pygame.draw.circle(self.screen, (255,0,0), (x, y), 10, 2)
+                font = pygame.font.SysFont(None, 20)
+                text = font.render(f"{prob:.2f}", True, (255,0,0))
+                self.screen.blit(text, (x-10, y-10))
 
         # 动态生成结果文本
         result_text = ""
