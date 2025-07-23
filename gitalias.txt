@@ -1,0 +1,10 @@
+[alias]
+        st = status -s
+        co = checkout
+        ci = commit
+        br = branch
+        bra = branch -a
+        last = log -1
+        lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+        rh = reset --hard HEAD
+        ciah = commit --amend -C HEAD
