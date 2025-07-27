@@ -1,5 +1,5 @@
 import logging
-from gomoku import SimplestPGTrainFlow
+from gomoku.vpg_train_flow import VPGTrainFlow
 
 
 def parse_args():
@@ -30,5 +30,5 @@ if __name__ == "__main__":
 
     mode = parse_args()
 
-    train_flow = SimplestPGTrainFlow(mode)
+    train_flow = VPGTrainFlow(mode)
     train_flow.run(max_k=10000, eval_interval=10, save_interval=100)

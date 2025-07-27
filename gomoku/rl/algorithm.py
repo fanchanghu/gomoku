@@ -40,36 +40,45 @@ def simplest_policy_gradient(
 
 
 def compute_gae(
-    trajectory: Trajectory,
-    value_net: torch.nn.Module,
+    trajectory,
+    value_net,
     gamma: float = 0.99,
     lam: float = 0.95,
-) -> tuple[torch.Tensor, torch.Tensor]:
-    """
-    trajectory: Trajectory（List[SAR]），每个SAR有 state, action, reward, next_state, done
-    value_net: 状态价值网络
-    返回：优势（tensor），回报（tensor）
-    """
+):
     device = next(value_net.parameters()).device
+    n = len(trajectory)
 
-    states = [torch.as_tensor(sar.state, device=device) for sar in trajectory]
-    rewards = [sar.reward for sar in trajectory]
-    next_states = [torch.as_tensor(sar.next_state, device=device) for sar in trajectory]
-    dones = [sar.done for sar in trajectory]
+    # 预分配 Tensor 缓冲区
+    states = torch.empty((n, *trajectory[0].state.shape), device=device)
+    next_states = torch.empty_like(states)
+    rewards = torch.empty(n, device=device)
+    dones = torch.zeros(n, device=device)  # 先全部填 0
+    dones[-1] = 1.0  # 最后一个元素 done=1
 
-    values = value_net(torch.stack(states)).detach().cpu().numpy()
-    next_values = value_net(torch.stack(next_states)).detach().cpu().numpy()
+    # 一次性把数据搬进 Tensor
+    for t, sar in enumerate(trajectory):
+        states[t] = torch.as_tensor(sar.state, device=device)
+        rewards[t] = float(sar.reward)
 
-    advantages = []
-    gae = 0
-    returns = []
-    for t in reversed(range(len(trajectory))):
+    next_states[:-1] = states[1:]  # 0 ~ n-2 的 next_state
+    next_states[-1] = states[-1]  # 最后一个 next_state 用自身
+
+    with torch.no_grad():
+        values = value_net(states).squeeze(-1)  # (n,)
+        next_values = value_net(next_states).squeeze(-1)  # (n,)
+
+    # 预分配 advantages & returns
+    advantages = torch.empty(n, device=device)
+    returns = torch.empty(n, device=device)
+
+    gae = 0.0
+    for t in reversed(range(n)):
         delta = rewards[t] + gamma * next_values[t] * (1 - dones[t]) - values[t]
         gae = delta + gamma * lam * gae * (1 - dones[t])
-        advantages.insert(0, gae)
-        returns.insert(0, gae + values[t])
+        advantages[t] = gae
+        returns[t] = gae + values[t]
 
-    return torch.tensor(advantages, dtype=torch.float32), torch.tensor(returns, dtype=torch.float32)
+    return advantages, returns
 
 
 def optimize_policy(states, actions, advantages, policy, optimizer):

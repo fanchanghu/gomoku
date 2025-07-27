@@ -24,6 +24,7 @@ def select_action(
     policy_net: torch.nn.Module,
     env: GomokuEnv,
     state: np.ndarray,
+    temperature: float = 1.0,          # ← 新增温度参数
 ) -> int:
     """
     根据策略网络在合法动作中做 softmax 采样。
@@ -34,6 +35,7 @@ def select_action(
     input = torch.from_numpy(state).reshape((1, 1, *state.shape))
     logits = policy_net(input).squeeze(0)  # (H*W,)
     logits[~valid_mask] = -torch.inf
+    logits = logits / temperature
     probs = torch.softmax(logits, dim=0)
     return int(torch.multinomial(probs, 1).item())
 
@@ -41,6 +43,8 @@ def select_action(
 def self_play(
     policy_net: torch.nn.Module,
     env: GomokuEnv,
+    *,
+    temperature: float = 1.0,          # ← 新增温度参数
 ) -> Tuple[Trajectory, Trajectory]:
     env.reset()
     board_size = env.board_size
@@ -53,7 +57,7 @@ def self_play(
         cur_p = env.current_player
 
         state = canonical_state(env.board, cur_p)
-        act_idx = select_action(policy_net, env, state)
+        act_idx = select_action(policy_net, env, state, temperature)  # 使用温度参数
 
         # 当前步骤奖励先填 0
         sar = StateActionReward(state, act_idx, 0.0)
