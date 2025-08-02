@@ -7,7 +7,7 @@ from gomoku import GomokuNet
 class AIActor:
     def __init__(self):
         self.policy_net = GomokuNet()
-        self.policy_net.load_state_dict(torch.load("policy_net_simplest_pg.pth", map_location="cpu"))
+        self.policy_net.load_state_dict(torch.load("policy_net_vpg.pth", map_location="cpu"))
 
     def __call__(self, env: GomokuEnv):
         empty_positions = np.argwhere(env.board == 0)
