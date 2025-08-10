@@ -81,20 +81,35 @@ def compute_gae(
     return advantages, returns
 
 
-def optimize_policy(states, actions, advantages, policy, optimizer):
+def optimize_policy(states, actions, advantages, policy, optimizer, entropy_coef=0.01):
     device = next(policy.parameters()).device
     states = states.to(device)
     actions = actions.to(device)
     advantages = advantages.to(device)
-
+    
+    # 标准化 advantages
+    advantages = (advantages - advantages.mean()) / (advantages.std() + 1e-8)
+    
     logits = policy(states)
     log_probs = F.log_softmax(logits, dim=-1)
     log_probs_act = log_probs.gather(-1, actions.unsqueeze(-1)).squeeze(-1)
-
-    batch_size = len(states)
-    loss = -(log_probs_act * advantages).sum() / batch_size
+    
+    # 计算策略熵
+    entropy = -torch.sum(F.softmax(logits, dim=-1) * log_probs, dim=-1).mean()
+    
+    # 使用 trajectories 数量作为 batch_size
+    batch_size = len(states)  # 这里假设 states 是按 trajectories 累积的
+    
+    # 总损失 = 策略损失 - 熵正则化
+    policy_loss = -(log_probs_act * advantages).mean()
+    loss = policy_loss - entropy_coef * entropy
+    
     optimizer.zero_grad()
     loss.backward()
+    
+    # 添加梯度裁剪
+    torch.nn.utils.clip_grad_norm_(policy.parameters(), 0.5)
+    
     optimizer.step()
 
 
@@ -118,6 +133,7 @@ def vanilla_policy_gradient(
     value_optimizer: torch.optim.Optimizer,
     gamma: float = 0.99,
     lam: float = 0.95,
+    entropy_coef: float = 0.01,
 ) -> None:
     states = []
     actions = []
@@ -136,5 +152,6 @@ def vanilla_policy_gradient(
     advantages = torch.tensor(advantages, dtype=torch.float32)
     returns = torch.tensor(returns, dtype=torch.float32)
 
-    optimize_policy(states, actions, advantages, policy, optimizer)
+    # 传递 entropy_coef 到 optimize_policy
+    optimize_policy(states, actions, advantages, policy, optimizer, entropy_coef=entropy_coef)
     optimize_value(states, returns, value_net, value_optimizer)
