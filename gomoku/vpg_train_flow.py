@@ -89,31 +89,31 @@ class VPGTrainFlow(TrainFlow):
     def eval_step(self):
         self.policy_net.train(mode=False)
         self.baseline_policy_net.train(mode=False)
-        
+
         # 获取策略熵和胜率
         ent1, _, win_rate = play_multimes(
             self.policy_net, self.baseline_policy_net, self.env, 5
         )
-        
+
         # 记录指标
         if not hasattr(self, 'entropy_history'):
             self.entropy_history = []
         if not hasattr(self, 'win_rate_history'):
             self.win_rate_history = []
-            
+
         self.entropy_history.append(ent1)
         self.win_rate_history.append(win_rate)
-        
+
         # 打印当前指标
         logging.info(f"Entropy {ent1:.4f}, Win(rate) {win_rate:.4f}")
-        
+
         # 可视化展示（简单文本图形）
         self._visualize_metrics()
-    
+
     def _visualize_metrics(self):
         """简单的文本可视化展示"""
         import numpy as np
-        
+
         # 创建固定长度的显示窗口
         window_size = 20
         if len(self.entropy_history) > window_size:
@@ -122,7 +122,7 @@ class VPGTrainFlow(TrainFlow):
         else:
             entropy_window = self.entropy_history
             win_rate_window = self.win_rate_history
-            
+
         # 创建熵的文本图形
         entropy_min, entropy_max = 0, np.log(225)  # 假设最大动作数为225
         entropy_range = entropy_max - entropy_min
@@ -130,13 +130,13 @@ class VPGTrainFlow(TrainFlow):
         for e in entropy_window:
             bar_length = int(20 * (e - entropy_min) / entropy_range)
             entropy_graph += f"[{'#' * bar_length}{' ' * (20-bar_length)}] {e:.3f}\n"
-        
+
         # 创建胜率的文本图形
         win_rate_graph = ""
         for wr in win_rate_window:
             bar_length = int(20 * wr)
             win_rate_graph += f"[{'#' * bar_length}{' ' * (20-bar_length)}] {wr:.3f}\n"
-            
+
         # 打印图形
         logging.debug(f"\n=== Metric Visualization ===\nEntropy Trend:\n{entropy_graph}\nWin Rate Trend:\n{win_rate_graph}")
 

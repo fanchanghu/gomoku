@@ -39,7 +39,7 @@ def simplest_policy_gradient(
     optimizer.step()
 
 
-def compute_gae(
+def _compute_gae(
     trajectory,
     value_net,
     gamma: float = 0.99,
@@ -81,7 +81,7 @@ def compute_gae(
     return advantages, returns
 
 
-def optimize_policy(states, actions, advantages, policy, optimizer, entropy_coef=0.01):
+def _optimize_policy(states, actions, advantages, policy, optimizer, entropy_coef=0.01):
     device = next(policy.parameters()).device
     states = states.to(device)
     actions = actions.to(device)
@@ -113,7 +113,7 @@ def optimize_policy(states, actions, advantages, policy, optimizer, entropy_coef
     optimizer.step()
 
 
-def optimize_value(states, returns, value_net, value_optimizer):
+def _optimize_value(states, returns, value_net, value_optimizer):
     device = next(value_net.parameters()).device
     states = states.to(device)
     returns = returns.to(device)
@@ -140,7 +140,7 @@ def vanilla_policy_gradient(
     advantages = []
     returns = []
     for traj in trajectories:
-        traj_adv, traj_ret = compute_gae(traj, value_net, gamma, lam)
+        traj_adv, traj_ret = _compute_gae(traj, value_net, gamma, lam)
         for idx, sar in enumerate(traj):
             states.append(torch.as_tensor(sar.state))
             actions.append(sar.action)
@@ -153,5 +153,5 @@ def vanilla_policy_gradient(
     returns = torch.tensor(returns, dtype=torch.float32)
 
     # 传递 entropy_coef 到 optimize_policy
-    optimize_policy(states, actions, advantages, policy, optimizer, entropy_coef=entropy_coef)
-    optimize_value(states, returns, value_net, value_optimizer)
+    _optimize_policy(states, actions, advantages, policy, optimizer, entropy_coef=entropy_coef)
+    _optimize_value(states, returns, value_net, value_optimizer)
