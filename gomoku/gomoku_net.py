@@ -60,7 +60,7 @@ class GomokuNet(nn.Module):
         )
         
         # 使用增强的残差块
-        self.body = nn.Sequential(*[EnhancedResBlock(128) for _ in range(8)])
+        self.body = nn.Sequential(*[EnhancedResBlock(128) for _ in range(6)])
         
         if mode == "policy":
             self.head = nn.Sequential(
