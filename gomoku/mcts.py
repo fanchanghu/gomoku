@@ -230,7 +230,7 @@ class MCTS:
                 
             # 随机选择动作
             action = valid_actions[np.random.choice(len(valid_actions))]
-            _, _, done, _ = env.step(action)
+            _, _, terminated, truncated, _ = env.step(action)
             
         # 返回游戏结果
         return self._get_reward(env)

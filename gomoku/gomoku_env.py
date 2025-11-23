@@ -13,7 +13,7 @@ from pygame.locals import *
 class GomokuEnv(gym.Env):
     """五子棋游戏环境类"""
     
-    metadata = {"render.modes": ["human"]}
+    metadata = {"render_modes": ["human"], "render_fps": 4}
 
     def __init__(self, board_size=15):
         """
@@ -52,20 +52,29 @@ class GomokuEnv(gym.Env):
         # AI 移动概率可视化
         self.top_move_probs = None
 
-    def reset(self):
+    def reset(self, seed=None, options=None):
         """
         重置游戏环境到初始状态
         
+        Args:
+            seed: 随机种子
+            options: 重置选项
+            
         Returns:
-            np.ndarray: 重置后的棋盘状态
+            tuple: (observation, info)
         """
+        if seed is not None:
+            np.random.seed(seed)
+            
         self.board = np.zeros(
             (self.board_size, self.board_size), dtype=np.uint8
         )  # 重置棋盘为空
         self.current_player = 1  # 重置为玩家1先手
         self.game_over = False  # 游戏未结束
         self.winner = 0  # 重置赢家编号
-        return self.board
+        
+        info = {}
+        return self.board, info
 
     def step(self, action):
         """
@@ -75,10 +84,11 @@ class GomokuEnv(gym.Env):
             action: 动作坐标 (行, 列)
             
         Returns:
-            tuple: (observation, reward, done, info)
+            tuple: (observation, reward, terminated, truncated, info)
                 - observation: 新的棋盘状态
                 - reward: 奖励值 (当前实现为0)
-                - done: 游戏是否结束
+                - terminated: 游戏是否正常结束（获胜或平局）
+                - truncated: 游戏是否被截断（时间限制等）
                 - info: 额外信息字典
                 
         Raises:
@@ -95,17 +105,21 @@ class GomokuEnv(gym.Env):
         self.board[row, col] = self.current_player
         
         # 检查是否获胜
-        done = self.check_winner(row, col)
-        if done:
+        terminated = self.check_winner(row, col)
+        if terminated:
             self.winner = self.current_player  # 记录赢家编号
             self.game_over = True
         elif self.is_board_full():  # 检查棋盘是否已满
-            self.game_over = True  # 宣布和棋
+            terminated = True  # 宣布和棋
+            self.game_over = True
         else:
             # 切换玩家 (1->2, 2->1)
             self.current_player = 3 - self.current_player
             
-        return self.board, 0, self.game_over, {}
+        # 五子棋没有截断条件，所以truncated总是False
+        truncated = False
+        
+        return self.board, 0, terminated, truncated, {}
 
     def check_winner(self, row, col):
         """

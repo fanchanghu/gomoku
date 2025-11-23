@@ -1,39 +1,62 @@
-## Brief overview
-This rule file provides guidelines for developing and maintaining the gomoku reinforcement learning project. The project uses Python with PyTorch and follows a modular architecture for training AI agents to play gomoku (五子棋).
+## 项目概述
+本规则文件为五子棋强化学习项目提供开发和维护指南。项目使用 Python 结合 PyTorch 和 torchrl 框架，采用模块化架构训练五子棋 AI 智能体。
 
-## Project architecture
-- Follow the existing modular structure with separate directories for game logic, actors, and RL algorithms
-- Keep game environment (gomoku_env.py) separate from training logic
-- Use actor pattern for different player implementations (human, AI, random)
-- Maintain clear separation between policy networks and training frameworks
+## 项目架构
+- 遵循现有的模块化结构，包含游戏逻辑、智能体、RL 算法和训练工具等独立目录
+- 保持游戏环境 (gomoku_env.py) 与训练逻辑的分离
+- 使用智能体模式实现不同玩家类型（人类、AI、随机）
+- 保持策略网络与训练框架的清晰分离
+- 使用 torchrl 框架进行强化学习训练
 
-## Coding conventions
-- Use numpy arrays for board state representation (15x15 grid)
-- Follow gym environment interface standards for reset(), step(), and render()
-- Use PyTorch for neural network implementations
-- Implement proper logging with timestamps and levels
-- Use type hints where appropriate for better code clarity
+## 编码规范
+- 使用 numpy 数组表示棋盘状态 (15x15 网格)
+- 遵循 Gymnasium 环境接口标准实现 reset()、step() 和 render() 方法
+- 使用 PyTorch 实现神经网络，包含增强的残差块和空间注意力机制
+- 实现带时间戳和级别的适当日志记录
+- 在适当位置使用类型提示以提高代码清晰度
+- 使用 torchrl 的模块化组件构建强化学习系统
 
-## Training workflow
-- Support both "init" (from scratch) and "continue" (from checkpoint) training modes
-- Implement evaluation intervals during training to monitor progress
-- Save model checkpoints at regular intervals
-- Use command-line arguments for flexible training configuration
+## 训练工作流
+- 支持 "init"（从头开始）和 "continue"（从检查点继续）两种训练模式
+- 在训练期间实现定期评估以监控进度
+- 定期保存模型检查点
+- 使用命令行参数进行灵活的训练配置
+- 实现 MCTS（蒙特卡洛树搜索）与策略网络结合的训练
+- 使用 PPO 算法进行策略优化
 
-## Game logic standards
-- Board representation: 0=empty, 1=black, 2=white
-- Implement proper win condition checking in all directions (horizontal, vertical, diagonal)
-- Handle edge cases like full board (draw) and invalid moves
-- Maintain current player state and game over flags
+## 游戏逻辑标准
+- 棋盘表示：0=空位, 1=黑棋, 2=白棋
+- 在所有方向（水平、垂直、对角线）实现正确的获胜条件检查
+- 处理边缘情况，如满棋盘（平局）和无效移动
+- 维护当前玩家状态和游戏结束标志
 
-## Visualization and debugging
-- Use pygame for human-readable game visualization
-- Implement probability visualization for AI move predictions
-- Include proper error handling and validation
-- Provide clear status messages during training and gameplay
+## 可视化和调试
+- 使用 pygame 进行人类可读的游戏可视化
+- 实现 AI 移动概率的可视化用于调试
+- 包含适当的错误处理和验证
+- 在训练和游戏过程中提供清晰的状态消息
+- 使用 TensorBoard 记录训练指标
 
-## File organization
-- Keep main training scripts at project root level
-- Organize related modules in subdirectories (gomoku/, actors/, rl/)
-- Use __init__.py files for proper Python package structure
-- Store model checkpoints in dedicated model/ directory
+## 文件组织
+- 主要训练脚本保持在项目根级别
+- 在子目录中组织相关模块 (gomoku/, actors/, model/, tests/, workdir/)
+- 使用 __init__.py 文件实现正确的 Python 包结构
+- 在专用的 model/ 目录中存储模型检查点
+- 使用 pyproject.toml 和 uv.lock 进行依赖管理
+
+## 网络架构
+- 使用增强的残差块构建神经网络，包含空间注意力机制
+- 实现独立的策略网络和价值网络
+- 支持策略模式和价值模式两种网络运行模式
+- 使用适当的激活函数和归一化层
+
+## 训练工具
+- 实现模型查找、保存和清理的实用工具函数
+- 支持模型数量限制管理
+- 提供训练状态保存和恢复功能
+- 实现训练进度监控和 ETA 计算
+
+## 性能优化
+- 使用 GPU 加速训练（如果可用）
+- 实现梯度裁剪防止梯度爆炸
+- 使用回放缓冲区进行经验回放

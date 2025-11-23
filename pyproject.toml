@@ -20,6 +20,16 @@ dependencies = [
     "markupsafe",
 ]
 
+[project.optional-dependencies]
+dev = [
+    "pip",
+    "pytest",
+    "black",
+    "isort",
+    "flake8",
+    "mypy",
+]
+
 [tool.uv.sources]
 torch = { index = "pytorch-cu" }
 torchvision = { index = "pytorch-cu" }
