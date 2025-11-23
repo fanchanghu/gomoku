@@ -16,3 +16,15 @@ from torchrl.envs import step_mdp
 
 data = step_mdp(stepped_data)
 print(data)
+
+rollout = env.rollout(max_steps=10)
+print(rollout)
+
+transition = rollout[3]
+print(transition)
+
+from torchrl.envs import StepCounter, TransformedEnv
+
+transformed_env = TransformedEnv(env, StepCounter(max_steps=10))
+rollout = transformed_env.rollout(max_steps=100)
+print(rollout)
