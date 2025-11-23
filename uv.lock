@@ -1,0 +1,572 @@
+version = 1
+revision = 1
+requires-python = "==3.13.*"
+resolution-markers = [
+    "platform_machine != 'aarch64' or sys_platform != 'linux'",
+    "platform_machine == 'aarch64' and sys_platform == 'linux'",
+]
+
+[[package]]
+name = "cloudpickle"
+version = "3.1.2"
+source = { registry = "https://pypi.tuna.tsinghua.edu.cn/simple/" }
+sdist = { url = "https://pypi.tuna.tsinghua.edu.cn/packages/27/fb/576f067976d320f5f0114a8d9fa1215425441bb35627b1993e5afd8111e5/cloudpickle-3.1.2.tar.gz", hash = "sha256:7fda9eb655c9c230dab534f1983763de5835249750e85fbcef43aaa30a9a2414", size = 22330 }
+wheels = [
+    { url = "https://pypi.tuna.tsinghua.edu.cn/packages/88/39/799be3f2f0f38cc727ee3b4f1445fe6d5e4133064ec2e4115069418a5bb6/cloudpickle-3.1.2-py3-none-any.whl", hash = "sha256:9acb47f6afd73f60dc1df93bb801b472f05ff42fa6c84167d25cb206be1fbf4a", size = 22228 },
+]
+
+[[package]]
+name = "farama-notifications"
+version = "0.0.4"
+source = { registry = "https://pypi.tuna.tsinghua.edu.cn/simple/" }
+sdist = { url = "https://pypi.tuna.tsinghua.edu.cn/packages/2e/2c/8384832b7a6b1fd6ba95bbdcae26e7137bb3eedc955c42fd5cdcc086cfbf/Farama-Notifications-0.0.4.tar.gz", hash = "sha256:13fceff2d14314cf80703c8266462ebf3733c7d165336eee998fc58e545efd18", size = 2131 }
+wheels = [
+    { url = "https://pypi.tuna.tsinghua.edu.cn/packages/05/2c/ffc08c54c05cdce6fbed2aeebc46348dbe180c6d2c541c7af7ba0aa5f5f8/Farama_Notifications-0.0.4-py3-none-any.whl", hash = "sha256:14de931035a41961f7c056361dc7f980762a143d05791ef5794a751a2caf05ae", size = 2511 },
+]
+
+[[package]]
+name = "filelock"
+version = "3.19.1"
+source = { registry = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/" }
+wheels = [
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/filelock-3.19.1-py3-none-any.whl" },
+]
+
+[[package]]
+name = "fsspec"
+version = "2025.9.0"
+source = { registry = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/" }
+wheels = [
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/fsspec-2025.9.0-py3-none-any.whl" },
+]
+
+[[package]]
+name = "gomoku-rl"
+version = "0.1.0"
+source = { editable = "." }
+dependencies = [
+    { name = "gymnasium" },
+    { name = "markupsafe" },
+    { name = "numpy" },
+    { name = "pygame" },
+    { name = "torch" },
+    { name = "torchaudio", version = "2.9.1", source = { registry = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/" }, marker = "platform_machine == 'aarch64' and sys_platform == 'linux'" },
+    { name = "torchaudio", version = "2.9.1+cu128", source = { registry = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/" }, marker = "platform_machine != 'aarch64' or sys_platform != 'linux'" },
+    { name = "torchrl" },
+    { name = "torchvision", version = "0.24.1", source = { registry = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/" }, marker = "platform_machine == 'aarch64' and sys_platform == 'linux'" },
+    { name = "torchvision", version = "0.24.1+cu128", source = { registry = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/" }, marker = "platform_machine != 'aarch64' or sys_platform != 'linux'" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "gymnasium" },
+    { name = "markupsafe", index = "https://pypi.org/simple/" },
+    { name = "numpy" },
+    { name = "pygame" },
+    { name = "torch", index = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/" },
+    { name = "torchaudio", index = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/" },
+    { name = "torchrl" },
+    { name = "torchvision", index = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/" },
+]
+
+[[package]]
+name = "gymnasium"
+version = "1.2.2"
+source = { registry = "https://pypi.tuna.tsinghua.edu.cn/simple/" }
+dependencies = [
+    { name = "cloudpickle" },
+    { name = "farama-notifications" },
+    { name = "numpy" },
+    { name = "typing-extensions" },
+]
+sdist = { url = "https://pypi.tuna.tsinghua.edu.cn/packages/1b/1c/d70b2ddd067992fa0332deae08293ef2dc489917ac5342e0e4b8850641f6/gymnasium-1.2.2.tar.gz", hash = "sha256:46d927328f8518bb5a689dbe270d228c1da2b08bcb71ae0152c10aa66f48d530", size = 829250 }
+wheels = [
+    { url = "https://pypi.tuna.tsinghua.edu.cn/packages/c7/53/39cd8c2f85e213fce1f32367c4bdbd3402d3bcde7d0826a1172a0f2c5cc0/gymnasium-1.2.2-py3-none-any.whl", hash = "sha256:f04ec362b1fdf73a8b327db5ef89384a3f2ba411e05d3521513414fbbb2199c8", size = 952118 },
+]
+
+[[package]]
+name = "importlib-metadata"
+version = "7.1.0"
+source = { registry = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/" }
+dependencies = [
+    { name = "zipp" },
+]
+wheels = [
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/importlib_metadata-7.1.0-py3-none-any.whl" },
+]
+
+[[package]]
+name = "jinja2"
+version = "3.1.6"
+source = { registry = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/" }
+dependencies = [
+    { name = "markupsafe" },
+]
+wheels = [
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/jinja2-3.1.6-py3-none-any.whl" },
+]
+
+[[package]]
+name = "markupsafe"
+version = "3.0.3"
+source = { registry = "https://pypi.org/simple/" }
+sdist = { url = "https://files.pythonhosted.org/packages/7e/99/7690b6d4034fffd95959cbe0c02de8deb3098cc577c67bb6a24fe5d7caa7/markupsafe-3.0.3.tar.gz", hash = "sha256:722695808f4b6457b320fdc131280796bdceb04ab50fe1795cd540799ebe1698", size = 80313 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/38/2f/907b9c7bbba283e68f20259574b13d005c121a0fa4c175f9bed27c4597ff/markupsafe-3.0.3-cp313-cp313-macosx_10_13_x86_64.whl", hash = "sha256:e1cf1972137e83c5d4c136c43ced9ac51d0e124706ee1c8aa8532c1287fa8795", size = 11622 },
+    { url = "https://files.pythonhosted.org/packages/9c/d9/5f7756922cdd676869eca1c4e3c0cd0df60ed30199ffd775e319089cb3ed/markupsafe-3.0.3-cp313-cp313-macosx_11_0_arm64.whl", hash = "sha256:116bb52f642a37c115f517494ea5feb03889e04df47eeff5b130b1808ce7c219", size = 12029 },
+    { url = "https://files.pythonhosted.org/packages/00/07/575a68c754943058c78f30db02ee03a64b3c638586fba6a6dd56830b30a3/markupsafe-3.0.3-cp313-cp313-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:133a43e73a802c5562be9bbcd03d090aa5a1fe899db609c29e8c8d815c5f6de6", size = 24374 },
+    { url = "https://files.pythonhosted.org/packages/a9/21/9b05698b46f218fc0e118e1f8168395c65c8a2c750ae2bab54fc4bd4e0e8/markupsafe-3.0.3-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:ccfcd093f13f0f0b7fdd0f198b90053bf7b2f02a3927a30e63f3ccc9df56b676", size = 22980 },
+    { url = "https://files.pythonhosted.org/packages/7f/71/544260864f893f18b6827315b988c146b559391e6e7e8f7252839b1b846a/markupsafe-3.0.3-cp313-cp313-manylinux_2_31_riscv64.manylinux_2_39_riscv64.whl", hash = "sha256:509fa21c6deb7a7a273d629cf5ec029bc209d1a51178615ddf718f5918992ab9", size = 21990 },
+    { url = "https://files.pythonhosted.org/packages/c2/28/b50fc2f74d1ad761af2f5dcce7492648b983d00a65b8c0e0cb457c82ebbe/markupsafe-3.0.3-cp313-cp313-musllinux_1_2_aarch64.whl", hash = "sha256:a4afe79fb3de0b7097d81da19090f4df4f8d3a2b3adaa8764138aac2e44f3af1", size = 23784 },
+    { url = "https://files.pythonhosted.org/packages/ed/76/104b2aa106a208da8b17a2fb72e033a5a9d7073c68f7e508b94916ed47a9/markupsafe-3.0.3-cp313-cp313-musllinux_1_2_riscv64.whl", hash = "sha256:795e7751525cae078558e679d646ae45574b47ed6e7771863fcc079a6171a0fc", size = 21588 },
+    { url = "https://files.pythonhosted.org/packages/b5/99/16a5eb2d140087ebd97180d95249b00a03aa87e29cc224056274f2e45fd6/markupsafe-3.0.3-cp313-cp313-musllinux_1_2_x86_64.whl", hash = "sha256:8485f406a96febb5140bfeca44a73e3ce5116b2501ac54fe953e488fb1d03b12", size = 23041 },
+    { url = "https://files.pythonhosted.org/packages/19/bc/e7140ed90c5d61d77cea142eed9f9c303f4c4806f60a1044c13e3f1471d0/markupsafe-3.0.3-cp313-cp313-win32.whl", hash = "sha256:bdd37121970bfd8be76c5fb069c7751683bdf373db1ed6c010162b2a130248ed", size = 14543 },
+    { url = "https://files.pythonhosted.org/packages/05/73/c4abe620b841b6b791f2edc248f556900667a5a1cf023a6646967ae98335/markupsafe-3.0.3-cp313-cp313-win_amd64.whl", hash = "sha256:9a1abfdc021a164803f4d485104931fb8f8c1efd55bc6b748d2f5774e78b62c5", size = 15113 },
+    { url = "https://files.pythonhosted.org/packages/f0/3a/fa34a0f7cfef23cf9500d68cb7c32dd64ffd58a12b09225fb03dd37d5b80/markupsafe-3.0.3-cp313-cp313-win_arm64.whl", hash = "sha256:7e68f88e5b8799aa49c85cd116c932a1ac15caaa3f5db09087854d218359e485", size = 13911 },
+    { url = "https://files.pythonhosted.org/packages/e4/d7/e05cd7efe43a88a17a37b3ae96e79a19e846f3f456fe79c57ca61356ef01/markupsafe-3.0.3-cp313-cp313t-macosx_10_13_x86_64.whl", hash = "sha256:218551f6df4868a8d527e3062d0fb968682fe92054e89978594c28e642c43a73", size = 11658 },
+    { url = "https://files.pythonhosted.org/packages/99/9e/e412117548182ce2148bdeacdda3bb494260c0b0184360fe0d56389b523b/markupsafe-3.0.3-cp313-cp313t-macosx_11_0_arm64.whl", hash = "sha256:3524b778fe5cfb3452a09d31e7b5adefeea8c5be1d43c4f810ba09f2ceb29d37", size = 12066 },
+    { url = "https://files.pythonhosted.org/packages/bc/e6/fa0ffcda717ef64a5108eaa7b4f5ed28d56122c9a6d70ab8b72f9f715c80/markupsafe-3.0.3-cp313-cp313t-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:4e885a3d1efa2eadc93c894a21770e4bc67899e3543680313b09f139e149ab19", size = 25639 },
+    { url = "https://files.pythonhosted.org/packages/96/ec/2102e881fe9d25fc16cb4b25d5f5cde50970967ffa5dddafdb771237062d/markupsafe-3.0.3-cp313-cp313t-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:8709b08f4a89aa7586de0aadc8da56180242ee0ada3999749b183aa23df95025", size = 23569 },
+    { url = "https://files.pythonhosted.org/packages/4b/30/6f2fce1f1f205fc9323255b216ca8a235b15860c34b6798f810f05828e32/markupsafe-3.0.3-cp313-cp313t-manylinux_2_31_riscv64.manylinux_2_39_riscv64.whl", hash = "sha256:b8512a91625c9b3da6f127803b166b629725e68af71f8184ae7e7d54686a56d6", size = 23284 },
+    { url = "https://files.pythonhosted.org/packages/58/47/4a0ccea4ab9f5dcb6f79c0236d954acb382202721e704223a8aafa38b5c8/markupsafe-3.0.3-cp313-cp313t-musllinux_1_2_aarch64.whl", hash = "sha256:9b79b7a16f7fedff2495d684f2b59b0457c3b493778c9eed31111be64d58279f", size = 24801 },
+    { url = "https://files.pythonhosted.org/packages/6a/70/3780e9b72180b6fecb83a4814d84c3bf4b4ae4bf0b19c27196104149734c/markupsafe-3.0.3-cp313-cp313t-musllinux_1_2_riscv64.whl", hash = "sha256:12c63dfb4a98206f045aa9563db46507995f7ef6d83b2f68eda65c307c6829eb", size = 22769 },
+    { url = "https://files.pythonhosted.org/packages/98/c5/c03c7f4125180fc215220c035beac6b9cb684bc7a067c84fc69414d315f5/markupsafe-3.0.3-cp313-cp313t-musllinux_1_2_x86_64.whl", hash = "sha256:8f71bc33915be5186016f675cd83a1e08523649b0e33efdb898db577ef5bb009", size = 23642 },
+    { url = "https://files.pythonhosted.org/packages/80/d6/2d1b89f6ca4bff1036499b1e29a1d02d282259f3681540e16563f27ebc23/markupsafe-3.0.3-cp313-cp313t-win32.whl", hash = "sha256:69c0b73548bc525c8cb9a251cddf1931d1db4d2258e9599c28c07ef3580ef354", size = 14612 },
+    { url = "https://files.pythonhosted.org/packages/2b/98/e48a4bfba0a0ffcf9925fe2d69240bfaa19c6f7507b8cd09c70684a53c1e/markupsafe-3.0.3-cp313-cp313t-win_amd64.whl", hash = "sha256:1b4b79e8ebf6b55351f0d91fe80f893b4743f104bff22e90697db1590e47a218", size = 15200 },
+    { url = "https://files.pythonhosted.org/packages/0e/72/e3cc540f351f316e9ed0f092757459afbc595824ca724cbc5a5d4263713f/markupsafe-3.0.3-cp313-cp313t-win_arm64.whl", hash = "sha256:ad2cf8aa28b8c020ab2fc8287b0f823d0a7d8630784c31e9ee5edea20f406287", size = 13973 },
+]
+
+[[package]]
+name = "mpmath"
+version = "1.3.0"
+source = { registry = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/" }
+wheels = [
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/mpmath-1.3.0-py3-none-any.whl", hash = "sha256:a0b2b9fe80bbcd81a6647ff13108738cfb482d481d826cc0e02f5b35e5c88d2c" },
+]
+
+[[package]]
+name = "networkx"
+version = "3.5"
+source = { registry = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/" }
+wheels = [
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/networkx-3.5-py3-none-any.whl" },
+]
+
+[[package]]
+name = "numpy"
+version = "2.3.3"
+source = { registry = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/" }
+wheels = [
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/numpy-2.3.3-cp313-cp313-macosx_10_13_x86_64.whl" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/numpy-2.3.3-cp313-cp313-macosx_11_0_arm64.whl" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/numpy-2.3.3-cp313-cp313-macosx_14_0_arm64.whl" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/numpy-2.3.3-cp313-cp313-macosx_14_0_x86_64.whl" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/numpy-2.3.3-cp313-cp313-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/numpy-2.3.3-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/numpy-2.3.3-cp313-cp313-win_amd64.whl" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/numpy-2.3.3-cp313-cp313-win_arm64.whl" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/numpy-2.3.3-cp313-cp313t-macosx_10_13_x86_64.whl" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/numpy-2.3.3-cp313-cp313t-macosx_11_0_arm64.whl" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/numpy-2.3.3-cp313-cp313t-macosx_14_0_arm64.whl" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/numpy-2.3.3-cp313-cp313t-macosx_14_0_x86_64.whl" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/numpy-2.3.3-cp313-cp313t-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/numpy-2.3.3-cp313-cp313t-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/numpy-2.3.3-cp313-cp313t-win_amd64.whl" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/numpy-2.3.3-cp313-cp313t-win_arm64.whl" },
+]
+
+[[package]]
+name = "nvidia-cublas-cu12"
+version = "12.8.4.1"
+source = { registry = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/" }
+wheels = [
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/nvidia_cublas_cu12-12.8.4.1-py3-none-manylinux_2_27_aarch64.whl" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/nvidia_cublas_cu12-12.8.4.1-py3-none-manylinux_2_27_x86_64.whl", hash = "sha256:8ac4e771d5a348c551b2a426eda6193c19aa630236b418086020df5ba9667142" },
+]
+
+[[package]]
+name = "nvidia-cuda-cupti-cu12"
+version = "12.8.90"
+source = { registry = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/" }
+wheels = [
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/nvidia_cuda_cupti_cu12-12.8.90-py3-none-manylinux2014_aarch64.manylinux_2_17_aarch64.whl" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/nvidia_cuda_cupti_cu12-12.8.90-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", hash = "sha256:ea0cb07ebda26bb9b29ba82cda34849e73c166c18162d3913575b0c9db9a6182" },
+]
+
+[[package]]
+name = "nvidia-cuda-nvrtc-cu12"
+version = "12.8.93"
+source = { registry = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/" }
+wheels = [
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/nvidia_cuda_nvrtc_cu12-12.8.93-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl", hash = "sha256:a7756528852ef889772a84c6cd89d41dfa74667e24cca16bb31f8f061e3e9994" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/nvidia_cuda_nvrtc_cu12-12.8.93-py3-none-manylinux2014_aarch64.manylinux_2_17_aarch64.whl" },
+]
+
+[[package]]
+name = "nvidia-cuda-runtime-cu12"
+version = "12.8.90"
+source = { registry = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/" }
+wheels = [
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/nvidia_cuda_runtime_cu12-12.8.90-py3-none-manylinux2014_aarch64.manylinux_2_17_aarch64.whl", hash = "sha256:52bf7bbee900262ffefe5e9d5a2a69a30d97e2bc5bb6cc866688caa976966e3d" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/nvidia_cuda_runtime_cu12-12.8.90-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", hash = "sha256:adade8dcbd0edf427b7204d480d6066d33902cab2a4707dcfc48a2d0fd44ab90" },
+]
+
+[[package]]
+name = "nvidia-cudnn-cu12"
+version = "9.10.2.21"
+source = { registry = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/" }
+dependencies = [
+    { name = "nvidia-cublas-cu12" },
+]
+wheels = [
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/nvidia_cudnn_cu12-9.10.2.21-py3-none-manylinux_2_27_aarch64.whl", hash = "sha256:c9132cc3f8958447b4910a1720036d9eff5928cc3179b0a51fb6d167c6cc87d8" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/nvidia_cudnn_cu12-9.10.2.21-py3-none-manylinux_2_27_x86_64.whl", hash = "sha256:949452be657fa16687d0930933f032835951ef0892b37d2d53824d1a84dc97a8" },
+]
+
+[[package]]
+name = "nvidia-cufft-cu12"
+version = "11.3.3.83"
+source = { registry = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/" }
+dependencies = [
+    { name = "nvidia-nvjitlink-cu12" },
+]
+wheels = [
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/nvidia_cufft_cu12-11.3.3.83-py3-none-manylinux2014_aarch64.manylinux_2_17_aarch64.whl", hash = "sha256:848ef7224d6305cdb2a4df928759dca7b1201874787083b6e7550dd6765ce69a" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/nvidia_cufft_cu12-11.3.3.83-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", hash = "sha256:4d2dd21ec0b88cf61b62e6b43564355e5222e4a3fb394cac0db101f2dd0d4f74" },
+]
+
+[[package]]
+name = "nvidia-cufile-cu12"
+version = "1.13.1.3"
+source = { registry = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/" }
+wheels = [
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/nvidia_cufile_cu12-1.13.1.3-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", hash = "sha256:1d069003be650e131b21c932ec3d8969c1715379251f8d23a1860554b1cb24fc" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/nvidia_cufile_cu12-1.13.1.3-py3-none-manylinux_2_27_aarch64.whl", hash = "sha256:4beb6d4cce47c1a0f1013d72e02b0994730359e17801d395bdcbf20cfb3bb00a" },
+]
+
+[[package]]
+name = "nvidia-curand-cu12"
+version = "10.3.9.90"
+source = { registry = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/" }
+wheels = [
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/nvidia_curand_cu12-10.3.9.90-py3-none-manylinux_2_27_aarch64.whl" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/nvidia_curand_cu12-10.3.9.90-py3-none-manylinux_2_27_x86_64.whl", hash = "sha256:b32331d4f4df5d6eefa0554c565b626c7216f87a06a4f56fab27c3b68a830ec9" },
+]
+
+[[package]]
+name = "nvidia-cusolver-cu12"
+version = "11.7.3.90"
+source = { registry = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/" }
+dependencies = [
+    { name = "nvidia-cublas-cu12" },
+    { name = "nvidia-cusparse-cu12" },
+    { name = "nvidia-nvjitlink-cu12" },
+]
+wheels = [
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/nvidia_cusolver_cu12-11.7.3.90-py3-none-manylinux_2_27_aarch64.whl" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/nvidia_cusolver_cu12-11.7.3.90-py3-none-manylinux_2_27_x86_64.whl", hash = "sha256:4376c11ad263152bd50ea295c05370360776f8c3427b30991df774f9fb26c450" },
+]
+
+[[package]]
+name = "nvidia-cusparse-cu12"
+version = "12.5.8.93"
+source = { registry = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/" }
+dependencies = [
+    { name = "nvidia-nvjitlink-cu12" },
+]
+wheels = [
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/nvidia_cusparse_cu12-12.5.8.93-py3-none-manylinux2014_aarch64.manylinux_2_17_aarch64.whl", hash = "sha256:9b6c161cb130be1a07a27ea6923df8141f3c295852f4b260c65f18f3e0a091dc" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/nvidia_cusparse_cu12-12.5.8.93-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", hash = "sha256:1ec05d76bbbd8b61b06a80e1eaf8cf4959c3d4ce8e711b65ebd0443bb0ebb13b" },
+]
+
+[[package]]
+name = "nvidia-cusparselt-cu12"
+version = "0.7.1"
+source = { registry = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/" }
+wheels = [
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/nvidia_cusparselt_cu12-0.7.1-py3-none-manylinux2014_aarch64.whl", hash = "sha256:8878dce784d0fac90131b6817b607e803c36e629ba34dc5b433471382196b6a5" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/nvidia_cusparselt_cu12-0.7.1-py3-none-manylinux2014_aarch64.whl", hash = "sha256:8878dce784d0fac90131b6817b607e803c36e629ba34dc5b433471382196b6a5" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/nvidia_cusparselt_cu12-0.7.1-py3-none-manylinux2014_x86_64.whl", hash = "sha256:f1bb701d6b930d5a7cea44c19ceb973311500847f81b634d802b7b539dc55623" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/nvidia_cusparselt_cu12-0.7.1-py3-none-manylinux2014_x86_64.whl", hash = "sha256:f1bb701d6b930d5a7cea44c19ceb973311500847f81b634d802b7b539dc55623" },
+]
+
+[[package]]
+name = "nvidia-nccl-cu12"
+version = "2.27.5"
+source = { registry = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/" }
+wheels = [
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/nvidia_nccl_cu12-2.27.5-py3-none-manylinux2014_aarch64.manylinux_2_17_aarch64.whl" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/nvidia_nccl_cu12-2.27.5-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl" },
+]
+
+[[package]]
+name = "nvidia-nvjitlink-cu12"
+version = "12.8.93"
+source = { registry = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/" }
+wheels = [
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/nvidia_nvjitlink_cu12-12.8.93-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl", hash = "sha256:81ff63371a7ebd6e6451970684f916be2eab07321b73c9d244dc2b4da7f73b88" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/nvidia_nvjitlink_cu12-12.8.93-py3-none-manylinux2014_aarch64.manylinux_2_17_aarch64.whl", hash = "sha256:adccd7161ace7261e01bb91e44e88da350895c270d23f744f0820c818b7229e7" },
+]
+
+[[package]]
+name = "nvidia-nvshmem-cu12"
+version = "3.3.20"
+source = { registry = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/" }
+wheels = [
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/nvidia_nvshmem_cu12-3.3.20-py3-none-manylinux2014_aarch64.manylinux_2_17_aarch64.whl" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/nvidia_nvshmem_cu12-3.3.20-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl" },
+]
+
+[[package]]
+name = "nvidia-nvtx-cu12"
+version = "12.8.90"
+source = { registry = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/" }
+wheels = [
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/nvidia_nvtx_cu12-12.8.90-py3-none-manylinux2014_aarch64.manylinux_2_17_aarch64.whl", hash = "sha256:d7ad891da111ebafbf7e015d34879f7112832fc239ff0d7d776b6cb685274615" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/nvidia_nvtx_cu12-12.8.90-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", hash = "sha256:5b17e2001cc0d751a5bc2c6ec6d26ad95913324a4adb86788c944f8ce9ba441f" },
+]
+
+[[package]]
+name = "packaging"
+version = "24.1"
+source = { registry = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/" }
+wheels = [
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/packaging-24.1-py3-none-any.whl", hash = "sha256:5b8f2217dbdbd2f7f384c41c628544e6d52f2d0f53c6d0c3ea61aa5d1d7ff124" },
+]
+
+[[package]]
+name = "pillow"
+version = "11.3.0"
+source = { registry = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/" }
+wheels = [
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/pillow-11.3.0-cp313-cp313-ios_13_0_arm64_iphoneos.whl" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/pillow-11.3.0-cp313-cp313-ios_13_0_arm64_iphonesimulator.whl" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/pillow-11.3.0-cp313-cp313-ios_13_0_x86_64_iphonesimulator.whl" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/pillow-11.3.0-cp313-cp313-macosx_10_13_x86_64.whl" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/pillow-11.3.0-cp313-cp313-macosx_11_0_arm64.whl" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/pillow-11.3.0-cp313-cp313-manylinux2014_aarch64.manylinux_2_17_aarch64.whl" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/pillow-11.3.0-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.whl" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/pillow-11.3.0-cp313-cp313-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/pillow-11.3.0-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/pillow-11.3.0-cp313-cp313-win_amd64.whl" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/pillow-11.3.0-cp313-cp313-win_arm64.whl" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/pillow-11.3.0-cp313-cp313t-macosx_10_13_x86_64.whl" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/pillow-11.3.0-cp313-cp313t-macosx_11_0_arm64.whl" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/pillow-11.3.0-cp313-cp313t-manylinux2014_aarch64.manylinux_2_17_aarch64.whl" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/pillow-11.3.0-cp313-cp313t-manylinux2014_x86_64.manylinux_2_17_x86_64.whl" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/pillow-11.3.0-cp313-cp313t-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/pillow-11.3.0-cp313-cp313t-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/pillow-11.3.0-cp313-cp313t-win_amd64.whl" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/pillow-11.3.0-cp313-cp313t-win_arm64.whl" },
+]
+
+[[package]]
+name = "pygame"
+version = "2.6.1"
+source = { registry = "https://pypi.tuna.tsinghua.edu.cn/simple/" }
+sdist = { url = "https://pypi.tuna.tsinghua.edu.cn/packages/49/cc/08bba60f00541f62aaa252ce0cfbd60aebd04616c0b9574f755b583e45ae/pygame-2.6.1.tar.gz", hash = "sha256:56fb02ead529cee00d415c3e007f75e0780c655909aaa8e8bf616ee09c9feb1f", size = 14808125 }
+wheels = [
+    { url = "https://pypi.tuna.tsinghua.edu.cn/packages/e1/91/718acf3e2a9d08a6ddcc96bd02a6f63c99ee7ba14afeaff2a51c987df0b9/pygame-2.6.1-cp313-cp313-macosx_10_13_x86_64.whl", hash = "sha256:ae6039f3a55d800db80e8010f387557b528d34d534435e0871326804df2a62f2", size = 13090765 },
+    { url = "https://pypi.tuna.tsinghua.edu.cn/packages/0e/c6/9cb315de851a7682d9c7568a41ea042ee98d668cb8deadc1dafcab6116f0/pygame-2.6.1-cp313-cp313-macosx_11_0_arm64.whl", hash = "sha256:2a3a1288e2e9b1e5834e425bedd5ba01a3cd4902b5c2bff8ed4a740ccfe98171", size = 12381704 },
+    { url = "https://pypi.tuna.tsinghua.edu.cn/packages/9f/8f/617a1196e31ae3b46be6949fbaa95b8c93ce15e0544266198c2266cc1b4d/pygame-2.6.1-cp313-cp313-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:27eb17e3dc9640e4b4683074f1890e2e879827447770470c2aba9f125f74510b", size = 13581091 },
+    { url = "https://pypi.tuna.tsinghua.edu.cn/packages/3b/87/2851a564e40a2dad353f1c6e143465d445dab18a95281f9ea458b94f3608/pygame-2.6.1-cp313-cp313-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:4c1623180e70a03c4a734deb9bac50fc9c82942ae84a3a220779062128e75f3b", size = 14273844 },
+    { url = "https://pypi.tuna.tsinghua.edu.cn/packages/85/b5/aa23aa2e70bcba42c989c02e7228273c30f3b44b9b264abb93eaeff43ad7/pygame-2.6.1-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:ef07c0103d79492c21fced9ad68c11c32efa6801ca1920ebfd0f15fb46c78b1c", size = 13951197 },
+    { url = "https://pypi.tuna.tsinghua.edu.cn/packages/a6/06/29e939b34d3f1354738c7d201c51c250ad7abefefaf6f8332d962ff67c4b/pygame-2.6.1-cp313-cp313-win32.whl", hash = "sha256:3acd8c009317190c2bfd81db681ecef47d5eb108c2151d09596d9c7ea9df5c0e", size = 10249309 },
+    { url = "https://pypi.tuna.tsinghua.edu.cn/packages/7e/11/17f7f319ca91824b86557e9303e3b7a71991ef17fd45286bf47d7f0a38e6/pygame-2.6.1-cp313-cp313-win_amd64.whl", hash = "sha256:813af4fba5d0b2cb8e58f5d95f7910295c34067dcc290d34f1be59c48bd1ea6a", size = 10620084 },
+]
+
+[[package]]
+name = "setuptools"
+version = "70.2.0"
+source = { registry = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/" }
+wheels = [
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/setuptools-70.2.0-py3-none-any.whl", hash = "sha256:b8b8060bb426838fbe942479c90296ce976249451118ef566a5a0b7d8b78fb05" },
+]
+
+[[package]]
+name = "sympy"
+version = "1.14.0"
+source = { registry = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/" }
+dependencies = [
+    { name = "mpmath" },
+]
+wheels = [
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/sympy-1.14.0-py3-none-any.whl" },
+]
+
+[[package]]
+name = "tensordict"
+version = "0.9.0"
+source = { registry = "https://pypi.tuna.tsinghua.edu.cn/simple/" }
+dependencies = [
+    { name = "cloudpickle" },
+    { name = "importlib-metadata" },
+    { name = "numpy" },
+    { name = "packaging" },
+    { name = "torch" },
+]
+wheels = [
+    { url = "https://pypi.tuna.tsinghua.edu.cn/packages/64/ec/8d8b549d6f7a251b616297925d216aeac6a5f6528320e91dfacf39be3816/tensordict-0.9.0-cp313-cp313-macosx_15_0_arm64.whl", hash = "sha256:a39c385a87905b4500a5ecdc0691a35710fe88fdfbb3ce67590026f362a14d4b", size = 732356 },
+    { url = "https://pypi.tuna.tsinghua.edu.cn/packages/e1/1f/1f47cc455a03029ea71b41e872be201c8aaa8b3856b96bd57a0f2f7be845/tensordict-0.9.0-cp313-cp313-manylinux_2_28_aarch64.whl", hash = "sha256:e8ed37aae5b9cf5c11afa02d302b5df7ad5a77063dab8c321fe96896d4dde2de", size = 420257 },
+    { url = "https://pypi.tuna.tsinghua.edu.cn/packages/50/8a/c1c775f898b7229da88057018c06ba279a3bdd629bdbb3f9bb996df41b19/tensordict-0.9.0-cp313-cp313-manylinux_2_28_x86_64.whl", hash = "sha256:84dfa3d7d1924812f4c7b0fb370744f65b26cafd4d39c44e5a5cf43e94af3db4", size = 424021 },
+    { url = "https://pypi.tuna.tsinghua.edu.cn/packages/a0/27/1d0957cc4e7ddc45a8b44650284ab09b4d3d51df417e62e83bd7371b1e1e/tensordict-0.9.0-cp313-cp313-win_amd64.whl", hash = "sha256:1f0944befb6e7d0b6a33dad173a946e2ebde40ae2d55e4294b2289418b7c49ee", size = 465437 },
+    { url = "https://pypi.tuna.tsinghua.edu.cn/packages/89/f3/5cb96a85f36c9f0157f76989852e94dd93e6201ce02bc901e8a284bc6dd9/tensordict-0.9.0-cp313-cp313t-macosx_15_0_arm64.whl", hash = "sha256:ffec05a41120ffd8ed274f3537589bf3b749ee0bd77409776111b1276da92a4b", size = 776569 },
+    { url = "https://pypi.tuna.tsinghua.edu.cn/packages/cd/8a/6fdaa4b186120dd8a5f0fd61c6086aef6ee0c41311748337bcf626e05cf7/tensordict-0.9.0-cp313-cp313t-manylinux_2_28_aarch64.whl", hash = "sha256:c6c516e0bc841a3ada5d7485b7506a2ccae4551926ae2bb583768394fb914e8d", size = 420655 },
+    { url = "https://pypi.tuna.tsinghua.edu.cn/packages/7e/63/d4f39f061572cef6ddee17194a5fef8233686997a2b97a37824110b36732/tensordict-0.9.0-cp313-cp313t-manylinux_2_28_x86_64.whl", hash = "sha256:389d6fd6f4703f18bcaec920b22e68eecb607bdaeebfb692e9847d68abd195e8", size = 421609 },
+    { url = "https://pypi.tuna.tsinghua.edu.cn/packages/cb/b3/8bf4401d8f88b5fbf46dfbb525f24faadddc2cba2b02963896b4dfeb7637/tensordict-0.9.0-cp313-cp313t-win_amd64.whl", hash = "sha256:07182de244798c83d058cc8d5d7c27f2eeb5c0cefccff1dcfb11b6afca17c469", size = 475924 },
+]
+
+[[package]]
+name = "torch"
+version = "2.9.1+cu128"
+source = { registry = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/" }
+dependencies = [
+    { name = "filelock" },
+    { name = "fsspec" },
+    { name = "jinja2" },
+    { name = "networkx" },
+    { name = "nvidia-cublas-cu12", marker = "sys_platform == 'linux'" },
+    { name = "nvidia-cuda-cupti-cu12", marker = "sys_platform == 'linux'" },
+    { name = "nvidia-cuda-nvrtc-cu12", marker = "sys_platform == 'linux'" },
+    { name = "nvidia-cuda-runtime-cu12", marker = "sys_platform == 'linux'" },
+    { name = "nvidia-cudnn-cu12", marker = "sys_platform == 'linux'" },
+    { name = "nvidia-cufft-cu12", marker = "sys_platform == 'linux'" },
+    { name = "nvidia-cufile-cu12", marker = "sys_platform == 'linux'" },
+    { name = "nvidia-curand-cu12", marker = "sys_platform == 'linux'" },
+    { name = "nvidia-cusolver-cu12", marker = "sys_platform == 'linux'" },
+    { name = "nvidia-cusparse-cu12", marker = "sys_platform == 'linux'" },
+    { name = "nvidia-cusparselt-cu12", marker = "sys_platform == 'linux'" },
+    { name = "nvidia-nccl-cu12", marker = "sys_platform == 'linux'" },
+    { name = "nvidia-nvjitlink-cu12", marker = "sys_platform == 'linux'" },
+    { name = "nvidia-nvshmem-cu12", marker = "sys_platform == 'linux'" },
+    { name = "nvidia-nvtx-cu12", marker = "sys_platform == 'linux'" },
+    { name = "setuptools" },
+    { name = "sympy" },
+    { name = "triton", marker = "sys_platform == 'linux'" },
+    { name = "typing-extensions" },
+]
+wheels = [
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/torch-2.9.1%2Bcu128-cp313-cp313-manylinux_2_28_aarch64.whl" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/torch-2.9.1%2Bcu128-cp313-cp313-manylinux_2_28_x86_64.whl" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/torch-2.9.1%2Bcu128-cp313-cp313-win_amd64.whl" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/torch-2.9.1%2Bcu128-cp313-cp313t-manylinux_2_28_aarch64.whl" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/torch-2.9.1%2Bcu128-cp313-cp313t-manylinux_2_28_x86_64.whl" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/torch-2.9.1%2Bcu128-cp313-cp313t-win_amd64.whl" },
+]
+
+[[package]]
+name = "torchaudio"
+version = "2.9.1"
+source = { registry = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/" }
+resolution-markers = [
+    "platform_machine == 'aarch64' and sys_platform == 'linux'",
+]
+dependencies = [
+    { name = "torch", marker = "platform_machine == 'aarch64' and sys_platform == 'linux'" },
+]
+wheels = [
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/torchaudio-2.9.1-cp313-cp313-manylinux_2_28_aarch64.whl", hash = "sha256:ea6fe3b9525493df0a5eb5eed5c22925065b5830f6999980ed76bb36c4592d34" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/torchaudio-2.9.1-cp313-cp313t-manylinux_2_28_aarch64.whl", hash = "sha256:9d3cfd604a617a245d26a5381ad7d669047ac1c152896227d8a006aad12151f8" },
+]
+
+[[package]]
+name = "torchaudio"
+version = "2.9.1+cu128"
+source = { registry = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/" }
+resolution-markers = [
+    "platform_machine != 'aarch64' or sys_platform != 'linux'",
+]
+dependencies = [
+    { name = "torch", marker = "platform_machine != 'aarch64' or sys_platform != 'linux'" },
+]
+wheels = [
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/torchaudio-2.9.1%2Bcu128-cp313-cp313-manylinux_2_28_x86_64.whl", hash = "sha256:52297b7dfb7c42e311385572bc9c0186e602ea1a5f20c42923765baea99aff83" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/torchaudio-2.9.1%2Bcu128-cp313-cp313-win_amd64.whl", hash = "sha256:abb0ee5a40c883ad17d90cdd45965c06deef42a0a2ffc58c51e32729642292f0" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/torchaudio-2.9.1%2Bcu128-cp313-cp313t-manylinux_2_28_x86_64.whl", hash = "sha256:ddc7410908858693d3b81346f53b5e5e51f987b3b7128978be6c774314377204" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/torchaudio-2.9.1%2Bcu128-cp313-cp313t-win_amd64.whl", hash = "sha256:9d29dc3a2e0c43da66d33bcb9e22ad58c58f0ae1b6dcfe2d8d94bda279ddcf89" },
+]
+
+[[package]]
+name = "torchrl"
+version = "0.9.2"
+source = { registry = "https://pypi.tuna.tsinghua.edu.cn/simple/" }
+dependencies = [
+    { name = "cloudpickle" },
+    { name = "numpy" },
+    { name = "packaging" },
+    { name = "tensordict" },
+    { name = "torch" },
+]
+wheels = [
+    { url = "https://pypi.tuna.tsinghua.edu.cn/packages/87/84/0499ce67a8bd1b30089af16c106ddd8c69cd553b2d1a30408368388b13c3/torchrl-0.9.2-cp313-cp313-macosx_11_0_arm64.whl", hash = "sha256:9a1ffe1d2f454b694524e5f32558a58a10919da87a104561c6ccd087398644a6", size = 1718747 },
+    { url = "https://pypi.tuna.tsinghua.edu.cn/packages/a0/f5/29498644927b1f9146761f4f3ad35fa6959af16e41ee526a143133925a8b/torchrl-0.9.2-cp313-cp313-manylinux_2_28_aarch64.whl", hash = "sha256:bcce03361f38869d864def752af6bab86010eeb60bedb73f480504e055fe5223", size = 1403877 },
+    { url = "https://pypi.tuna.tsinghua.edu.cn/packages/fc/cc/a63cd1c00ecb96393ab270bcc3f6cad2cdaa67846aebc67e8c515350230e/torchrl-0.9.2-cp313-cp313-manylinux_2_28_x86_64.whl", hash = "sha256:6610422d448af96160362775449ad22453a76d9f5ef15f2607ed185e63ee59ca", size = 1410651 },
+    { url = "https://pypi.tuna.tsinghua.edu.cn/packages/69/f5/c365e738709057c8d297ec06104fca4793e860e3c7acad63babe422cf344/torchrl-0.9.2-cp313-cp313-win_amd64.whl", hash = "sha256:6c91e6b1fef31f3d20408126904b2202f1d37cb4ba3d39fcac66830c37d13a14", size = 1372038 },
+    { url = "https://pypi.tuna.tsinghua.edu.cn/packages/b4/e6/6a30ade56e33da16a3c7ae22e1018269da8a10a32e3f9b7399f11f57a06d/torchrl-0.9.2-cp313-cp313t-macosx_11_0_arm64.whl", hash = "sha256:8eeb0571cca8ac76eb2b818d5ed47b10e746de306af9e5c52c0bb0ebdfc80163", size = 1773110 },
+    { url = "https://pypi.tuna.tsinghua.edu.cn/packages/8e/e7/f798526cf38344d53e539e24de75616e814f0a9edff85faa921cb9d71b4f/torchrl-0.9.2-cp313-cp313t-manylinux_2_28_aarch64.whl", hash = "sha256:717c6631c74ef9f65801089eaf11a946d800794ab66dbeba73a8a17f9a689a2d", size = 1402524 },
+    { url = "https://pypi.tuna.tsinghua.edu.cn/packages/8e/42/d316f7c4c9021cf96bcca8b6b09dd77edb17a99967e4540f153156dcf454/torchrl-0.9.2-cp313-cp313t-manylinux_2_28_x86_64.whl", hash = "sha256:ae4ab524c795227ecfab8703fe2a5148558bca621e2bb9f3ecc017f456de6f2e", size = 1411016 },
+    { url = "https://pypi.tuna.tsinghua.edu.cn/packages/3f/1a/8548715958204306a39f7e4fa53aa00f9112a1217d8a59a255d39e6e3a78/torchrl-0.9.2-cp313-cp313t-win_amd64.whl", hash = "sha256:5fafde3cec493025946c2ef61c80ce6b5949fbbadd93393a2c9b589152683fd3", size = 1386871 },
+]
+
+[[package]]
+name = "torchvision"
+version = "0.24.1"
+source = { registry = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/" }
+resolution-markers = [
+    "platform_machine == 'aarch64' and sys_platform == 'linux'",
+]
+dependencies = [
+    { name = "numpy", marker = "platform_machine == 'aarch64' and sys_platform == 'linux'" },
+    { name = "pillow", marker = "platform_machine == 'aarch64' and sys_platform == 'linux'" },
+    { name = "torch", marker = "platform_machine == 'aarch64' and sys_platform == 'linux'" },
+]
+wheels = [
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/torchvision-0.24.1-cp313-cp313-manylinux_2_28_aarch64.whl" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/torchvision-0.24.1-cp313-cp313t-manylinux_2_28_aarch64.whl" },
+]
+
+[[package]]
+name = "torchvision"
+version = "0.24.1+cu128"
+source = { registry = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/" }
+resolution-markers = [
+    "platform_machine != 'aarch64' or sys_platform != 'linux'",
+]
+dependencies = [
+    { name = "numpy", marker = "platform_machine != 'aarch64' or sys_platform != 'linux'" },
+    { name = "pillow", marker = "platform_machine != 'aarch64' or sys_platform != 'linux'" },
+    { name = "torch", marker = "platform_machine != 'aarch64' or sys_platform != 'linux'" },
+]
+wheels = [
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/torchvision-0.24.1%2Bcu128-cp313-cp313-manylinux_2_28_x86_64.whl", hash = "sha256:5f7c5e0fa08d2cbee93b6e04bbedd59b5e11462cff6cefd07949217265df2370" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/torchvision-0.24.1%2Bcu128-cp313-cp313-win_amd64.whl", hash = "sha256:c38b0ece839de439de81ed0e81e915c200975972c0b9419608fa9568aa74ecec" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/torchvision-0.24.1%2Bcu128-cp313-cp313t-manylinux_2_28_x86_64.whl", hash = "sha256:5ae2dc0f582215b078d7fd52410fe51f79b801770c53e7cfb8ad04316283017d" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/torchvision-0.24.1%2Bcu128-cp313-cp313t-win_amd64.whl", hash = "sha256:b50d48f4074039e6067230f123f55404014b849d7c4fe1dac3a1924ea02bbd78" },
+]
+
+[[package]]
+name = "triton"
+version = "3.5.1"
+source = { registry = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/" }
+wheels = [
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/triton-3.5.1-cp313-cp313-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/triton-3.5.1-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/triton-3.5.1-cp313-cp313t-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl" },
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/triton-3.5.1-cp313-cp313t-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl" },
+]
+
+[[package]]
+name = "typing-extensions"
+version = "4.15.0"
+source = { registry = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/" }
+wheels = [
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/typing_extensions-4.15.0-py3-none-any.whl" },
+]
+
+[[package]]
+name = "zipp"
+version = "3.19.2"
+source = { registry = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/" }
+wheels = [
+    { url = "https://mirrors.nju.edu.cn/pytorch/whl/zipp-3.19.2-py3-none-any.whl" },
+]

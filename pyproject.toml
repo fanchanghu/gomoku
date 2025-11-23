@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gomoku-rl"
+version = "0.1.0"
+description = "Gomoku reinforcement learning project with PyTorch"
+requires-python = "==3.13.*"
+authors = [
+    {name = "Developer", email = "developer@example.com"},
+]
+dependencies = [
+    "numpy",
+    "gymnasium",
+    "pygame",
+    "torch",
+    "torchvision",
+    "torchaudio",
+    "torchrl",
+
+    "markupsafe",
+]
+
+[tool.setuptools]
+packages = ["gomoku"]
+
+[tool.setuptools.dynamic]
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu" }
+torchvision = { index = "pytorch-cu" }
+torchaudio = { index = "pytorch-cu" }
+markupsafe = { index = "pypi" }
+
+[[tool.uv.index]]
+name = "default"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple/"
+default = true
+
+[[tool.uv.index]]
+name = "pytorch-cu"
+url = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/"
+
+[[tool.uv.index]]
+name = "pypi"
+url = "https://pypi.org/simple/"
+default = true

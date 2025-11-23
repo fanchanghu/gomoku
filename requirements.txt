@@ -1,6 +1,0 @@
-gym
-numpy
-pygame
-torch
-torchrl
-stable_baselines3
