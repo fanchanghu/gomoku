@@ -1,9 +1,5 @@
-[build-system]
-requires = ["setuptools>=61.0", "wheel"]
-build-backend = "setuptools.build_meta"
-
 [project]
-name = "gomoku-rl"
+name = "gomoku"
 version = "0.1.0"
 description = "Gomoku reinforcement learning project with PyTorch"
 requires-python = "==3.13.*"
@@ -21,11 +17,6 @@ dependencies = [
 
     "markupsafe",
 ]
-
-[tool.setuptools]
-packages = ["gomoku"]
-
-[tool.setuptools.dynamic]
 
 [tool.uv.sources]
 torch = { index = "pytorch-cu" }
@@ -46,3 +37,7 @@ url = "https://mirrors.nju.edu.cn/pytorch/whl/cu128/"
 name = "pypi"
 url = "https://pypi.org/simple/"
 default = true
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
