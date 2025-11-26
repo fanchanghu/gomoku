@@ -28,6 +28,7 @@ dev = [
     "isort",
     "flake8",
     "mypy",
+    "av",
 ]
 
 [tool.uv.sources]
